@@ -1,0 +1,1 @@
+# shitty-static-site-generator
