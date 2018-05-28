@@ -1,0 +1,22 @@
+{
+  "name": "shitty-ssg",
+  "version": "0.0.1",
+  "description": "A shitty static site generator",
+  "main": "index.js",
+  "scripts": {
+    "build": "node ./scripts/build",
+    "clean": "node ./scripts/clean.js",
+    "dev": "node ./scripts/develop.js && cd public && serve"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "glob": "^7.1.2",
+    "serve": "6.4.8",
+    "showdown": "^1.8.6",
+    "stylus": "^0.54.5"
+  },
+  "author": "Christian Linchausen",
+  "license": "ISC"
+}
