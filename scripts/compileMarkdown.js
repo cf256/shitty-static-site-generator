@@ -4,11 +4,24 @@ const globP = promisify(require('glob'));
 const readFileP = promisify(require('fs').readFile);
 const writeFileP = promisify(require('fs').writeFile);
 const showdown = require('showdown');
+const handlebars = require('handlebars');
 const error = require('./error').error;
 const srcPath = './src/pages';
 const converter = new showdown.Converter();
 
-function compileMarkdown() {
+function compileHandlebars() {
+  const filePath = path.join(process.cwd(), 'src', 'layout.hbs');
+
+  return readFileP(filePath, 'utf8')
+    .then(contents => {
+      return handlebars.compile(contents);
+    })
+    .catch(error);
+}
+
+async function compileMarkdown() {
+  const template = await compileHandlebars();
+  const stylePath = 'style.css';
   globP('**/*.md', { cwd: `${srcPath}` })
     .then(files => {
       files.forEach(file => {
@@ -17,7 +30,14 @@ function compileMarkdown() {
 
         readFileP(filePath, 'utf8')
           .then(contents => {
-            const html = converter.makeHtml(contents);
+            const body = converter.makeHtml(contents);
+
+            const html = template({
+              title: 'Test',
+              stylesheet: stylePath,
+              content: body
+            });
+
             writeFileP(
               path.join(process.cwd(), 'public', `${fileHtmlName}`),
               html,
