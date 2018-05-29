@@ -32,6 +32,7 @@ async function compileMarkdown() {
           .then(contents => {
             const body = converter.makeHtml(contents);
 
+            // TODO: Front matter for page metadata
             const html = template({
               title: 'Test',
               stylesheet: stylePath,
