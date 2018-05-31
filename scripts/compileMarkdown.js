@@ -36,6 +36,7 @@ async function compileMarkdown() {
             const html = template({
               title: 'Test',
               stylesheet: stylePath,
+              favicon: 'favicon.ico',
               content: body
             });
 

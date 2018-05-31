@@ -1,5 +1,4 @@
 /**
- * Favicon
  * 4. Working Partials
  * async await
  * 5. Read Config
@@ -12,9 +11,12 @@
 const clean = require('./clean');
 const compileStylus = require('./compileStylus');
 const compileMarkdown = require('./compileMarkdown');
+const moveAssets = require('./moveAssets');
 
 function build() {
   clean();
+
+  moveAssets();
   compileStylus();
   compileMarkdown();
 }
